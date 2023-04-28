@@ -31,7 +31,6 @@ public class PostService {
     private final JwtUtil jwtUtil;
 
 
-
     //게시물 전체조회
     @Transactional(readOnly = true)
     public List<AllResponseDto> getAllPosts() {
@@ -102,7 +101,6 @@ public class PostService {
         }
         // 토큰에서 사용자 정보 가져오기
         claims = jwtUtil.getUserInfoFromToken(token);
-
         // 토큰에서 가져온 사용자 정보를 사용하여 DB 조회
         String username = claims.get(SUBJECT_KEY, String.class);
         String role = claims.get(AUTHORIZATION_KEY, String.class);
@@ -160,6 +158,4 @@ public class PostService {
     }
 
     }
-
-
 
