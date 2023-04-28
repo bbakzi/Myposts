@@ -1,4 +1,4 @@
-package com.sparta.myposts;
+package com.sparta.Myposts;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

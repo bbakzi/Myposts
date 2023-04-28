@@ -1,9 +1,9 @@
-package com.sparta.MyPosts.controller;
+package com.sparta.Myposts.controller;
 
-import com.sparta.MyPosts.dto.LoginRequestDto;
-import com.sparta.MyPosts.dto.MsgResponseDto;
-import com.sparta.MyPosts.dto.SignupRequestDto;
-import com.sparta.MyPosts.service.UserService;
+import com.sparta.Myposts.dto.LoginRequestDto;
+import com.sparta.Myposts.dto.MsgResponseDto;
+import com.sparta.Myposts.dto.SignupRequestDto;
+import com.sparta.Myposts.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

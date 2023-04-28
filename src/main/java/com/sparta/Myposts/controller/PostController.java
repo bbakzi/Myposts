@@ -1,9 +1,10 @@
-package com.sparta.MyPosts.controller;
+package com.sparta.Myposts.controller;
 
-import com.sparta.MyPosts.dto.MsgResponseDto;
-import com.sparta.MyPosts.dto.PostRequestDto;
-import com.sparta.MyPosts.dto.PostResponseDto;
-import com.sparta.MyPosts.service.PostService;
+import com.sparta.Myposts.dto.AllResponseDto;
+import com.sparta.Myposts.dto.MsgResponseDto;
+import com.sparta.Myposts.dto.PostRequestDto;
+import com.sparta.Myposts.dto.PostResponseDto;
+import com.sparta.Myposts.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class PostController {
 
     //게시글 전체조회 구현 완료!
     @GetMapping("/get")
-    public List<PostResponseDto> getPosts(){
+    public List<AllResponseDto> getPosts(){
         return postService.getAllPosts();
     }
 
@@ -32,7 +33,7 @@ public class PostController {
 
     //게시글 하나 조회
     @GetMapping ("/get/{id}") //작성 날짜 작성 내용 조회
-    public PostResponseDto getPost(@PathVariable Long id){
+    public AllResponseDto getPost(@PathVariable Long id){
         return postService.getPost(id);
     }
 

@@ -1,4 +1,4 @@
-package com.sparta.MyPosts.dto;
+package com.sparta.Myposts.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +10,5 @@ import lombok.Setter;
 public class LoginRequestDto {
 
     private String username;
-
     private String password;
 }

@@ -1,4 +1,4 @@
-package com.sparta.MyPosts.entity;
+package com.sparta.Myposts.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
