@@ -36,11 +36,15 @@ public class PostService {
     public List<AllResponseDto> getAllPosts() {
         List<AllResponseDto> allResponseDto = new ArrayList<>();
         List<Post> posts = postRepository.findAllByOrderByModifiedAtDesc();
-        {
-            return posts.stream().map(post -> new PostResponseDto(post)).toList();
+
+        for(Post post : posts ) {
+            List<CommentResponseDto> commentResponseDto = new ArrayList<>();
+            commentResponseDto = commentRepository.findAllComment(post.getId());
+            allResponseDto.add(new AllResponseDto(post, commentResponseDto));
+        }
+        return allResponseDto;
             //테이블에 저장되어있는 모든 게시글 조회
             //뽑아온 데이터를 map을 통해 responsedto로 가공, collect가 list 타입으로 묶어줌.
-        }
     }
 
     //게시물 작성
@@ -153,6 +157,7 @@ public class PostService {
                 return new MsgResponseDto("삭제완료", HttpStatus.OK);
             }
         }
+        commentRepository.deleteCommentByPost_Id(post.getId());
         postRepository.delete(post);
         return new MsgResponseDto("삭제완료", HttpStatus.OK);
     }
