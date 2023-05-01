@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Comment extends TimeStamped {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//.AUTO) 공부 고고
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//.AUTO
     private Long id; //comment uid
 
     @Column(nullable = false)
@@ -20,7 +20,7 @@ public class Comment extends TimeStamped {
     @Column(nullable = false)
     private String username;
 
-    @ManyToOne //(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="Post_id", nullable = false)
     private Post post;
 
