@@ -32,8 +32,8 @@ public class PostController {
     //게시글 입력
     //@Secured(UserRoleEnum.Authority.ADMIN)
     @PostMapping("/post")
-    public PostResponseDto createPost (@RequestBody PostRequestDto postRequestDto, HttpServletRequest request,@AuthenticationPrincipal UserDetailsImpl userDetails){
-        return postService.createPost(postRequestDto,request,userDetails.getUser());
+    public PostResponseDto createPost (@RequestBody PostRequestDto postRequestDto,@AuthenticationPrincipal UserDetailsImpl userDetails){
+        return postService.createPost(postRequestDto,userDetails.getUser());
     }
 
     //게시글 하나 조회
@@ -45,13 +45,13 @@ public class PostController {
     //게시글 수정
     @PutMapping("/put/{id}")
     //@PathVariable 이것도 정리해서 til 작성하고 주석에 최대한 짧게 정리
-    public PostResponseDto update(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto, HttpServletRequest request){
-        return postService.update(id,postRequestDto,request);
+    public PostResponseDto update(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return postService.update(id,postRequestDto,userDetails.getUser());
     }
 
     //게시글 삭제
     @DeleteMapping("/delete/{id}")
-    public MsgResponseDto delete(@PathVariable Long id, HttpServletRequest request){
-        return postService.delete(id,request);
+    public MsgResponseDto delete(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return postService.deleteAll(id,userDetails.getUser());
     }
 }
