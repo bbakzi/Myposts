@@ -4,8 +4,12 @@ import com.sparta.Myposts.dto.AllResponseDto;
 import com.sparta.Myposts.dto.MsgResponseDto;
 import com.sparta.Myposts.dto.PostRequestDto;
 import com.sparta.Myposts.dto.PostResponseDto;
+import com.sparta.Myposts.entity.UserRoleEnum;
+import com.sparta.Myposts.security.UserDetailsImpl;
 import com.sparta.Myposts.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +30,10 @@ public class PostController {
     }
 
     //게시글 입력
+    //@Secured(UserRoleEnum.Authority.ADMIN)
     @PostMapping("/post")
-    public PostResponseDto createPost (@RequestBody PostRequestDto postRequestDto, HttpServletRequest request){
-        return postService.createPost(postRequestDto,request);
+    public PostResponseDto createPost (@RequestBody PostRequestDto postRequestDto, HttpServletRequest request,@AuthenticationPrincipal UserDetailsImpl userDetails){
+        return postService.createPost(postRequestDto,request,userDetails.getUser());
     }
 
     //게시글 하나 조회

@@ -49,7 +49,7 @@ public class PostService {
 
     //게시물 작성
     @Transactional
-    public PostResponseDto createPost(PostRequestDto postRequestDto, HttpServletRequest request) {
+    public PostResponseDto createPost(PostRequestDto postRequestDto, HttpServletRequest request, User user) {
         //httpRequest 토큰 가지고 오기
         String token = jwtUtil.resolveToken(request);
         Claims claims;
@@ -64,7 +64,7 @@ public class PostService {
         claims = jwtUtil.getUserInfoFromToken(token);
 
         // 토큰에서 가져온 사용자 정보를 사용하여 DB 조회
-        User user = userRepository.findByUsername(claims.getSubject()).orElseThrow(
+        user = userRepository.findByUsername(claims.getSubject()).orElseThrow(
                 () -> new IllegalArgumentException("사용자가 존재하지 않습니다.")
         );
 
